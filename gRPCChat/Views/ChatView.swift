@@ -1,11 +1,24 @@
 import SwiftUI
+import GRPC
+import CGRPCZlib
 
 struct ChatView: View {
-    @State var message = ""
+    @AppStorage("userId") var userId: Int = 0
+
+    @State var textMessage = ""
 
     @Environment(\.colorScheme) var scheme
 
-    @StateObject var viewModel: ChatViewModel
+    @StateObject var viewModel = ChatViewModel()
+
+    let chatClient: ChatClientProtocol
+
+    init() {
+        let eventGroup = PlatformSupport.makeEventLoopGroup(loopCount: 1)
+        let channel = ClientConnection.insecure(group: eventGroup).connect(host: "localhost", port: 24957)
+        chatClient = ChatClient(channel: channel)
+    }
+
 
     var body: some View {
         VStack {
@@ -31,7 +44,7 @@ struct ChatView: View {
             }
 
             HStack(spacing: 10) {
-                TextField("Message", text: $message)
+                TextField("Message", text: $textMessage)
                     .modifier(ShadowModifier())
 
                 Button(action: sendMessage, label: {
@@ -41,27 +54,28 @@ struct ChatView: View {
                         .foregroundColor(scheme == .dark ? .black : .white)
                         .clipShape(Circle())
                 })
-                .disabled(message == "")
-                .opacity(message == "" ? 0.5 : 1)
+                .disabled(textMessage == "")
+                .opacity(textMessage == "" ? 0.5 : 1)
             }
             .padding(.horizontal)
             .padding(.bottom, 8)
         }
         .navigationTitle("Chat")
+        .onAppear(perform: {
+            // TODO: finish listen
+//            chatClient.listen
+        })
     }
 
 
     func sendMessage() {
-        viewModel.messages.append(Message(id: UUID(),
-                                          text: message,
-                                          isSentByCurrentUser: true,
-                                          createdAt: Date(),
-                                          author: ChatUser(id: "ios",
-                                                           name: "Iván",
-                                                           isOnline: true,
-                                                           lastActiveAt: Date())))
-        // Clearing Msg Field...
-        message = ""
+        var message = Message()
+        message.userID = Int32(userId)
+        message.dateTime = Int64(Date().timeIntervalSince1970)
+        message.message = textMessage
+
+        chatClient.write(message, callOptions: nil)
+        textMessage = ""
     }
 }
 
@@ -69,6 +83,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(viewModel: ChatViewModel())
+        ChatView()
     }
 }

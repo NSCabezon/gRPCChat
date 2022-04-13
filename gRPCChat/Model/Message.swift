@@ -1,16 +1,11 @@
 import Foundation
 
-struct Message: Equatable, Identifiable {
-    let id: UUID
-    let text: String
-    let isSentByCurrentUser: Bool
-    let createdAt: Date
-    let author: ChatUser
-}
+extension Message {
+    func isSentByCurrentUser(userId: Int32) -> Bool {
+        userId == userID
+    }
 
-struct ChatUser: Identifiable, Equatable {
-    let id: String
-    let name: String?
-    let isOnline: Bool
-    let lastActiveAt: Date?
+    var date: Date {
+        Date(timeIntervalSince1970: TimeInterval(dateTime))
+    }
 }

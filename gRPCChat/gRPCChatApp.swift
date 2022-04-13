@@ -4,7 +4,7 @@ import SwiftUI
 struct gRPCChatApp: App {
     var body: some Scene {
         WindowGroup {
-            ChatView(viewModel: ChatViewModel())
+            ChatView()
         }
     }
 }

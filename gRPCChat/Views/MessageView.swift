@@ -1,41 +1,42 @@
 import SwiftUI
 
 struct MessageView: View {
+    @AppStorage("userId") var userId: Int = 0
     var messsage: Message
     
     var body: some View {
         HStack {
-            if messsage.isSentByCurrentUser {
+            if messsage.isSentByCurrentUser(userId: Int32(userId)) {
                 Spacer()
             }
             
             HStack(alignment: .bottom,spacing: 10) {
-                if !messsage.isSentByCurrentUser {
+                if !messsage.isSentByCurrentUser(userId: Int32(userId)) {
                     UserView(message: messsage)
                         .offset(y: 10.0)
                 }
 
-                VStack(alignment: messsage.isSentByCurrentUser ? .trailing : .leading, spacing: 6, content: {
-                    Text(messsage.text)
-                    Text(messsage.createdAt,style: .time)
+                VStack(alignment: messsage.isSentByCurrentUser(userId: Int32(userId)) ? .trailing : .leading, spacing: 6, content: {
+                    Text(messsage.message)
+                    Text(messsage.date, style: .time)
                         .font(.caption)
                 })
                 .padding([.horizontal,.top])
                 .padding(.bottom,8)
                 // Current User color is blue and opposite user color is gray...
-                .background(messsage.isSentByCurrentUser ? Color.blue : Color.gray.opacity(0.4))
-                .clipShape(ChatBubble(corners: messsage.isSentByCurrentUser ? .allButBottomRight : .allButBottomLeft))
-                .foregroundColor(messsage.isSentByCurrentUser ? .white : .primary)
-                .frame(width: UIScreen.main.bounds.width - 150,alignment: messsage.isSentByCurrentUser ? .trailing : .leading)
+                .background(messsage.isSentByCurrentUser(userId: Int32(userId)) ? Color.blue : Color.gray.opacity(0.4))
+                .clipShape(ChatBubble(corners: messsage.isSentByCurrentUser(userId: Int32(userId)) ? .allButBottomRight : .allButBottomLeft))
+                .foregroundColor(messsage.isSentByCurrentUser(userId: Int32(userId)) ? .white : .primary)
+                .frame(width: UIScreen.main.bounds.width - 150,alignment: messsage.isSentByCurrentUser(userId: Int32(userId)) ? .trailing : .leading)
                 
 
-                if messsage.isSentByCurrentUser {
+                if messsage.isSentByCurrentUser(userId: Int32(userId)) {
                     UserView(message: messsage)
                         .offset(y: 10.0)
                 }
             }
             
-            if !messsage.isSentByCurrentUser {
+            if !messsage.isSentByCurrentUser(userId: Int32(userId)) {
                 Spacer()
             }
         }
@@ -43,23 +44,19 @@ struct MessageView: View {
 }
 
 struct UserView: View {
+    @AppStorage("userId") var userId: Int = 0
+
     var message: Message
 
     var body: some View{
         Circle()
-            .fill(message.isSentByCurrentUser ? Color.blue : Color.gray.opacity(0.4))
+            .fill(message.isSentByCurrentUser(userId: Int32(userId)) ? Color.blue : Color.gray.opacity(0.4))
             .frame(width: 40, height: 40)
-            .overlay(Text("\(String(message.author.id.first!))")
+            .overlay(Text("\(message.userID)")
                 .fontWeight(.semibold)
-                .foregroundColor(message.isSentByCurrentUser ? .white : .primary))
+                .foregroundColor(message.isSentByCurrentUser(userId: Int32(userId)) ? .white : .primary))
             .contextMenu(menuItems: {
-                Text("\(message.author.id)")
-
-                if message.author.isOnline {
-                    Text("Status: Online")
-                } else {
-                    Text(message.author.lastActiveAt ?? Date(),style: .time)
-                }
+                Text("\(message.userID)")
             })
     }
 }
