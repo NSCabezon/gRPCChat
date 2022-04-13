@@ -16,9 +16,7 @@
 		6419D66E28058A230071E34F /* ShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419D66D28058A230071E34F /* ShadowModifier.swift */; };
 		6419D67128058B500071E34F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419D67028058B500071E34F /* Message.swift */; };
 		6419D67428058DF30071E34F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419D67328058DF30071E34F /* ChatViewModel.swift */; };
-		64710F722805B1010030700B /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = 64710F712805B1010030700B /* CGRPCZlib */; };
-		64710F742805B1010030700B /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 64710F732805B1010030700B /* GRPC */; };
-		64710F762805B1010030700B /* protoc-gen-grpc-swift in Frameworks */ = {isa = PBXBuildFile; productRef = 64710F752805B1010030700B /* protoc-gen-grpc-swift */; };
+		646E79CF2806B01F007F099E /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 646E79CE2806B01F007F099E /* GRPC */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64710F742805B1010030700B /* GRPC in Frameworks */,
-				64710F722805B1010030700B /* CGRPCZlib in Frameworks */,
-				64710F762805B1010030700B /* protoc-gen-grpc-swift in Frameworks */,
+				646E79CF2806B01F007F099E /* GRPC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +133,7 @@
 			);
 			name = gRPCChat;
 			packageProductDependencies = (
-				64710F712805B1010030700B /* CGRPCZlib */,
-				64710F732805B1010030700B /* GRPC */,
-				64710F752805B1010030700B /* protoc-gen-grpc-swift */,
+				646E79CE2806B01F007F099E /* GRPC */,
 			);
 			productName = gRPCChat;
 			productReference = 6419D650280588690071E34F /* gRPCChat.app */;
@@ -170,7 +164,7 @@
 			);
 			mainGroup = 6419D647280588690071E34F;
 			packageReferences = (
-				64710F702805B1010030700B /* XCRemoteSwiftPackageReference "grpc-swift" */,
+				646E79CD2806B01F007F099E /* XCRemoteSwiftPackageReference "grpc-swift" */,
 			);
 			productRefGroup = 6419D651280588690071E34F /* Products */;
 			projectDirPath = "";
@@ -407,31 +401,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		64710F702805B1010030700B /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+		646E79CD2806B01F007F099E /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:grpc/grpc-swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.7.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		64710F712805B1010030700B /* CGRPCZlib */ = {
+		646E79CE2806B01F007F099E /* GRPC */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 64710F702805B1010030700B /* XCRemoteSwiftPackageReference "grpc-swift" */;
-			productName = CGRPCZlib;
-		};
-		64710F732805B1010030700B /* GRPC */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 64710F702805B1010030700B /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			package = 646E79CD2806B01F007F099E /* XCRemoteSwiftPackageReference "grpc-swift" */;
 			productName = GRPC;
-		};
-		64710F752805B1010030700B /* protoc-gen-grpc-swift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 64710F702805B1010030700B /* XCRemoteSwiftPackageReference "grpc-swift" */;
-			productName = "protoc-gen-grpc-swift";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

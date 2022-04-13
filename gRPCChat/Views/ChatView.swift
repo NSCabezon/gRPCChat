@@ -37,7 +37,7 @@ struct ChatView: View {
                 Button(action: sendMessage, label: {
                     Image(systemName: "paperplane.fill")
                         .padding(10)
-                        .background(Color.primary)
+                        .background(Color.red)
                         .foregroundColor(scheme == .dark ? .black : .white)
                         .clipShape(Circle())
                 })
