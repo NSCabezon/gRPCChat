@@ -1,24 +1,13 @@
 import SwiftUI
-import GRPC
-import CGRPCZlib
 
 struct ChatView: View {
-    @AppStorage("userId") var userId: Int = 0
+    @AppStorage("userId") var userId: Int?
 
     @State var textMessage = ""
 
     @Environment(\.colorScheme) var scheme
 
     @StateObject var viewModel = ChatViewModel()
-
-    let chatClient: Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_ChatClientProtocol
-
-    init() {
-        let eventGroup = PlatformSupport.makeEventLoopGroup(loopCount: 1)
-        let channel = ClientConnection.insecure(group: eventGroup).connect(host: "localhost", port: 24957)
-        chatClient = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_ChatClient(channel: channel)
-    }
-
 
     var body: some View {
         VStack {
@@ -62,40 +51,16 @@ struct ChatView: View {
         }
         .navigationTitle("Chat")
         .onAppear(perform: {
-            // TODO: finish listen
-            var hello = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Hello()
-            hello.nickName = "iOS"
-            let result = chatClient.hello(hello, callOptions: nil)
-
-            do {
-                let response = try result.response.wait()
-                debugPrint(response)
-                self.userId = Int(response.id)
-            } catch {
-                debugPrint("something went wrong")
-            }
+            viewModel.viewAppeared()
         })
     }
 
 
     func sendMessage() {
-        var message = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_WriteMessage()
-        message.userID = Int32(userId)
-        message.message = textMessage
-
-        let result = chatClient.write(message, callOptions: nil)
-
-        do {
-            let response = try result.response.wait()
-            debugPrint("Message sent: \(response.ack == .sent)")
-        } catch {
-            debugPrint("something went wrong")
-        }
+        viewModel.sendMessage(text: textMessage)
         textMessage = ""
     }
 }
-
-
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
