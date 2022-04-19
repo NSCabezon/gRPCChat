@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MessageView: View {
     @AppStorage("userId") var userId: Int = 0
-    var messsage: Message
+    var messsage: Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Message
     
     var body: some View {
         HStack {
@@ -46,17 +46,17 @@ struct MessageView: View {
 struct UserView: View {
     @AppStorage("userId") var userId: Int = 0
 
-    var message: Message
+    var message: Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Message
 
     var body: some View{
         Circle()
             .fill(message.isSentByCurrentUser(userId: Int32(userId)) ? Color.blue : Color.gray.opacity(0.4))
             .frame(width: 40, height: 40)
-            .overlay(Text("\(message.userID)")
+            .overlay(Text("\(message.user.nickName)")
                 .fontWeight(.semibold)
                 .foregroundColor(message.isSentByCurrentUser(userId: Int32(userId)) ? .white : .primary))
             .contextMenu(menuItems: {
-                Text("\(message.userID)")
+                Text("\(message.user.id)")
             })
     }
 }

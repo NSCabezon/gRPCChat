@@ -11,12 +11,12 @@ struct ChatView: View {
 
     @StateObject var viewModel = ChatViewModel()
 
-    let chatClient: ChatClientProtocol
+    let chatClient: Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_ChatClientProtocol
 
     init() {
         let eventGroup = PlatformSupport.makeEventLoopGroup(loopCount: 1)
         let channel = ClientConnection.insecure(group: eventGroup).connect(host: "localhost", port: 24957)
-        chatClient = ChatClient(channel: channel)
+        chatClient = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_ChatClient(channel: channel)
     }
 
 
@@ -63,18 +63,34 @@ struct ChatView: View {
         .navigationTitle("Chat")
         .onAppear(perform: {
             // TODO: finish listen
-//            chatClient.listen
+            var hello = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Hello()
+            hello.nickName = "iOS"
+            let result = chatClient.hello(hello, callOptions: nil)
+
+            do {
+                let response = try result.response.wait()
+                debugPrint(response)
+                self.userId = Int(response.id)
+            } catch {
+                debugPrint("something went wrong")
+            }
         })
     }
 
 
     func sendMessage() {
-        var message = Message()
+        var message = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_WriteMessage()
         message.userID = Int32(userId)
-        message.dateTime = Int64(Date().timeIntervalSince1970)
         message.message = textMessage
 
-        chatClient.write(message, callOptions: nil)
+        let result = chatClient.write(message, callOptions: nil)
+
+        do {
+            let response = try result.response.wait()
+            debugPrint("Message sent: \(response.ack == .sent)")
+        } catch {
+            debugPrint("something went wrong")
+        }
         textMessage = ""
     }
 }
