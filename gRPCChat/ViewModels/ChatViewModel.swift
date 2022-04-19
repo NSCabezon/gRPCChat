@@ -38,7 +38,18 @@ class ChatViewModel: ObservableObject {
     }
 
     func getHistory() {
+        guard let userId = userId else { return }
+        var userReq = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_User()
+        userReq.id = Int32(userId)
+        let result = chatClient.getHistory(userReq, callOptions: nil)
 
+        do {
+            let response = try result.response.wait()
+            debugPrint(response)
+            self.messages = response.messages
+        } catch {
+            debugPrint("something went wrong")
+        }
     }
 
     func suscribeToNewMessages() {
