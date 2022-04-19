@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6416E2952807179E0095F8CD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		6416E2952807179E0095F8CD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6416E29728071A040095F8CD /* chat-service.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "chat-service.grpc.swift"; sourceTree = "<group>"; };
 		6416E29928071A4C0095F8CD /* chat-service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "chat-service.pb.swift"; sourceTree = "<group>"; };
 		6419D650280588690071E34F /* gRPCChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gRPCChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
