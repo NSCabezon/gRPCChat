@@ -22,7 +22,7 @@ class ChatViewModel: ObservableObject {
     }
 
     func greetIfNeeded() {
-        if self.userId != nil {
+        if self.userId == nil {
             var hello = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Hello()
             hello.nickName = "iOS"
             let result = chatClient.hello(hello, callOptions: nil)
