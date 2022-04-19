@@ -19,6 +19,7 @@
 		6419D66E28058A230071E34F /* ShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419D66D28058A230071E34F /* ShadowModifier.swift */; };
 		6419D67128058B500071E34F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419D67028058B500071E34F /* Message.swift */; };
 		6419D67428058DF30071E34F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419D67328058DF30071E34F /* ChatViewModel.swift */; };
+		B785A714280EEAEB006DD359 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B785A713280EEAEB006DD359 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		6419D66D28058A230071E34F /* ShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowModifier.swift; sourceTree = "<group>"; };
 		6419D67028058B500071E34F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		6419D67328058DF30071E34F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		B785A713280EEAEB006DD359 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		6419D652280588690071E34F /* gRPCChat */ = {
 			isa = PBXGroup;
 			children = (
+				B785A713280EEAEB006DD359 /* Constants.swift */,
 				6419D653280588690071E34F /* gRPCChatApp.swift */,
 				6416E296280719FC0095F8CD /* Generated */,
 				6419D66F28058B490071E34F /* Model */,
@@ -213,6 +216,7 @@
 				6416E29828071A040095F8CD /* chat-service.grpc.swift in Sources */,
 				6419D67428058DF30071E34F /* ChatViewModel.swift in Sources */,
 				6419D66B280589F00071E34F /* MessageView.swift in Sources */,
+				B785A714280EEAEB006DD359 /* Constants.swift in Sources */,
 				6419D6622805887A0071E34F /* ChatBubble.swift in Sources */,
 				6419D654280588690071E34F /* gRPCChatApp.swift in Sources */,
 				6416E29A28071A4C0095F8CD /* chat-service.pb.swift in Sources */,

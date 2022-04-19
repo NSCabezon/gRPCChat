@@ -11,7 +11,7 @@ class ChatViewModel: ObservableObject {
 
     init() {
         let eventGroup = PlatformSupport.makeEventLoopGroup(loopCount: 1)
-        let channel = ClientConnection.insecure(group: eventGroup).connect(host: "localhost", port: 24957)
+        let channel = ClientConnection.insecure(group: eventGroup).connect(host: serverURL, port: serverPort)
         chatClient = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_ChatClient(channel: channel)
     }
 
