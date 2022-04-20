@@ -47,7 +47,9 @@ class ChatViewModel: ObservableObject {
         do {
             let response = try result.response.wait()
             debugPrint(response)
-            self.messages = response.messages
+            DispatchQueue.main.async {
+                self.messages = response.messages
+            }
         } catch {
             debugPrint(error)
             debugPrint("something went wrong")

@@ -52,7 +52,7 @@ struct UserView: View {
         Circle()
             .fill(message.isSentByCurrentUser(userId: Int32(userId)) ? Color.blue : Color.gray.opacity(0.4))
             .frame(width: 40, height: 40)
-            .overlay(Text("\(String(message.user.nickName.first!))")
+            .overlay(Text("\(String(message.user.nickName.first ?? Character(" ")))")
                 .fontWeight(.semibold)
                 .foregroundColor(message.isSentByCurrentUser(userId: Int32(userId)) ? .white : .primary))
             .contextMenu(menuItems: {

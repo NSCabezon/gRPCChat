@@ -21,5 +21,5 @@ export PATH=$PATH:{{path_to_binary}}
 After having the needed dependencies. To generate swift files use the following command:
 
 ```swift
-protoc --swift_out=<<output_path>> <<input_file>>
+protoc --grpc-swift_out=. --swift_out=. chat.proto
 ```
