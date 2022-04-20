@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MessageView: View {
     @AppStorage("userId") var userId: Int = 0
-    var messsage: Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Message
+    var messsage: Message
     
     var body: some View {
         HStack {
@@ -46,7 +46,7 @@ struct MessageView: View {
 struct UserView: View {
     @AppStorage("userId") var userId: Int = 0
 
-    var message: Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Message
+    var message: Message
 
     var body: some View{
         Circle()

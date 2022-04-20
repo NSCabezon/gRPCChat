@@ -1,6 +1,6 @@
 import Foundation
 
-extension Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Message {
+extension Message {
     func isSentByCurrentUser(userId: Int32) -> Bool {
         user.id == userId
     }
@@ -10,7 +10,7 @@ extension Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Message {
     }
 }
 
-extension Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Message: Identifiable {
+extension Message: Identifiable {
     var id: String {
         return String("\(message)\(user.id)")
     }
