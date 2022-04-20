@@ -49,6 +49,7 @@ class ChatViewModel: ObservableObject {
             debugPrint(response)
             self.messages = response.messages
         } catch {
+            debugPrint(error)
             debugPrint("something went wrong")
         }
     }

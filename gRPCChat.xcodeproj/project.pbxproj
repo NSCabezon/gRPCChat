@@ -37,6 +37,7 @@
 		6419D67028058B500071E34F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		6419D67328058DF30071E34F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		B785A713280EEAEB006DD359 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B7A1273328100A3F008D09F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +81,7 @@
 		6419D652280588690071E34F /* gRPCChat */ = {
 			isa = PBXGroup;
 			children = (
+				B7A1273328100A3F008D09F8 /* Info.plist */,
 				B785A713280EEAEB006DD359 /* Constants.swift */,
 				6419D653280588690071E34F /* gRPCChatApp.swift */,
 				6416E296280719FC0095F8CD /* Generated */,
@@ -352,6 +354,7 @@
 				DEVELOPMENT_TEAM = 4K7V7FKKFE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gRPCChat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -381,6 +384,7 @@
 				DEVELOPMENT_TEAM = 4K7V7FKKFE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gRPCChat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

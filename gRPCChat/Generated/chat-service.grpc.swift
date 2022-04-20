@@ -54,7 +54,7 @@ internal protocol ChatClientProtocol: GRPCClient {
 
 extension ChatClientProtocol {
   internal var serviceName: String {
-    return "Chat"
+    return "com.santiihoyos.grpcchat.data.grpc.model.grpcchat.Chat"
   }
 
   ///
@@ -70,7 +70,7 @@ extension ChatClientProtocol {
     callOptions: CallOptions? = nil
   ) -> UnaryCall<Hello, User> {
     return self.makeUnaryCall(
-      path: "/Chat/hello",
+      path: "/com.santiihoyos.grpcchat.data.grpc.model.grpcchat.Chat/hello",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makehelloInterceptors() ?? []
@@ -89,7 +89,7 @@ extension ChatClientProtocol {
     callOptions: CallOptions? = nil
   ) -> UnaryCall<User, History> {
     return self.makeUnaryCall(
-      path: "/Chat/getHistory",
+      path: "/com.santiihoyos.grpcchat.data.grpc.model.grpcchat.Chat/getHistory",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetHistoryInterceptors() ?? []
@@ -108,7 +108,7 @@ extension ChatClientProtocol {
     callOptions: CallOptions? = nil
   ) -> UnaryCall<WriteMessage, MessageResult> {
     return self.makeUnaryCall(
-      path: "/Chat/write",
+      path: "/com.santiihoyos.grpcchat.data.grpc.model.grpcchat.Chat/write",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makewriteInterceptors() ?? []
@@ -129,7 +129,7 @@ extension ChatClientProtocol {
     handler: @escaping (Message) -> Void
   ) -> ServerStreamingCall<User, Message> {
     return self.makeServerStreamingCall(
-      path: "/Chat/listen",
+      path: "/com.santiihoyos.grpcchat.data.grpc.model.grpcchat.Chat/listen",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makelistenInterceptors() ?? [],
