@@ -3,16 +3,16 @@ import GRPC
 import CGRPCZlib
 
 class ChatViewModel: ObservableObject {
-    @Published var messages: [Message] = []
+    @Published var messages: [Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Message] = []
 
     @AppStorage("userId") var userId: Int?
 
-    private let chatClient: ChatClientProtocol
+    private let chatClient: Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_ChatClientProtocol
 
     init() {
         let eventGroup = PlatformSupport.makeEventLoopGroup(loopCount: 1)
         let channel = ClientConnection.insecure(group: eventGroup).connect(host: serverURL, port: serverPort)
-        chatClient = ChatClient(channel: channel)
+        chatClient = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_ChatClient(channel: channel)
     }
 
     func viewAppeared() {
@@ -23,7 +23,7 @@ class ChatViewModel: ObservableObject {
 
     func greetIfNeeded() {
         if self.userId == nil {
-            var hello = Hello()
+            var hello = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_Hello()
             hello.nickName = "iOS"
             let result = chatClient.hello(hello, callOptions: nil)
 
@@ -40,7 +40,7 @@ class ChatViewModel: ObservableObject {
 
     func getHistory() {
         guard let userId = userId else { return }
-        var userReq = User()
+        var userReq = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_User()
         userReq.id = Int32(userId)
         let result = chatClient.getHistory(userReq, callOptions: nil)
 
@@ -56,7 +56,7 @@ class ChatViewModel: ObservableObject {
 
     func suscribeToNewMessages() {
         guard let userId = userId else { return }
-        var user = User()
+        var user = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_User()
         user.id = Int32(userId)
         let request = chatClient.listen(user, callOptions: nil) { [weak self] message in
             debugPrint("received message")
@@ -67,7 +67,7 @@ class ChatViewModel: ObservableObject {
 
     func sendMessage(text: String) {
         guard let userId = userId else { return }
-        var message = WriteMessage()
+        var message = Com_Santiihoyos_Grpcchat_Data_Grpc_Model_Grpcchat_WriteMessage()
         message.userID = Int32(userId)
         message.message = text
 
