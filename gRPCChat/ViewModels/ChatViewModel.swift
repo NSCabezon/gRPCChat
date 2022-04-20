@@ -32,6 +32,7 @@ class ChatViewModel: ObservableObject {
                 debugPrint(response)
                 self.userId = Int(response.id)
             } catch {
+                debugPrint(error)
                 debugPrint("something went wrong")
             }
         }

@@ -7,5 +7,5 @@
 
 import Foundation
 
-let serverURL = "http://vps-7fe29e2f.vps.ovh.net"
+let serverURL = "vps-7fe29e2f.vps.ovh.net"
 let serverPort = 8888
