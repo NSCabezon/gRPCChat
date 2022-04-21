@@ -9,6 +9,8 @@ struct ChatView: View {
 
     @StateObject var viewModel = ChatViewModel()
 
+    @FocusState private var isTextFieldFocused: Bool
+
     var body: some View {
         VStack {
             ScrollViewReader { reader in
@@ -30,24 +32,28 @@ struct ChatView: View {
                 .onAppear(perform: {
                     reader.scrollTo("MSG_VIEW", anchor: .bottom)
                 })
-            }
 
-            HStack(spacing: 10) {
-                TextField("Message", text: $textMessage)
-                    .modifier(ShadowModifier())
+                HStack(spacing: 10) {
+                    TextField("Message", text: $textMessage)
+                        .modifier(ShadowModifier())
+                        .focused($isTextFieldFocused)
+                        .onChange(of: isTextFieldFocused) { _ in
+                            reader.scrollTo("MSG_VIEW", anchor: .bottom)
+                        }
 
-                Button(action: sendMessage, label: {
-                    Image(systemName: "paperplane.fill")
-                        .padding(10)
-                        .background(Color.red)
-                        .foregroundColor(scheme == .dark ? .black : .white)
-                        .clipShape(Circle())
-                })
-                .disabled(textMessage == "")
-                .opacity(textMessage == "" ? 0.5 : 1)
+                    Button(action: sendMessage, label: {
+                        Image(systemName: "paperplane.fill")
+                            .padding(10)
+                            .background(Color.red)
+                            .foregroundColor(scheme == .dark ? .black : .white)
+                            .clipShape(Circle())
+                    })
+                    .disabled(textMessage == "")
+                    .opacity(textMessage == "" ? 0.5 : 1)
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 8)
             }
-            .padding(.horizontal)
-            .padding(.bottom, 8)
         }
         .navigationTitle("Chat")
         .onAppear(perform: {
